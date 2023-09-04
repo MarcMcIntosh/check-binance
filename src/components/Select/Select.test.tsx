@@ -10,8 +10,15 @@ describe("Select", () => {
   test("it should display the selected options", async () => {
     const placeholder = "letters";
     const label = "letters";
+
+    const onSelectionChange = vi.fn();
     const App: FC = () => (
-      <Select placeholder={placeholder} label={label} items={options}>
+      <Select
+        onSelectionChange={onSelectionChange}
+        placeholder={placeholder}
+        label={label}
+        items={options}
+      >
         {(item) => <Item>{item.name}</Item>}
       </Select>
     );
@@ -27,5 +34,7 @@ describe("Select", () => {
     }
 
     expect(screen.getByRole("button").textContent).toContain("C");
+    expect(onSelectionChange).toHaveBeenCalled();
+    expect(onSelectionChange).toHaveBeenLastCalledWith("c");
   });
 });
