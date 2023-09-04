@@ -12,13 +12,10 @@ import {
 
 describe("binance service", () => {
   test.each([
-    [
-      EXCHANGE_INFO_URL().toString(),
-      "https://api.binance.com/api/v3/exchangeInfo",
-    ],
-    [TICKER_URL().toString(), "https://api.binance.com/api/v3/ticker"],
-    [TICKER_24H_URL().toString(), "https://api.binance.com/api/v3/ticker/24hr"],
-    [TRADES_URL().toString(), "https://api.binance.com/api/v3/trades"],
+    [EXCHANGE_INFO_URL, "https://api.binance.com/api/v3/exchangeInfo"],
+    [TICKER_URL, "https://api.binance.com/api/v3/ticker"],
+    [TICKER_24H_URL, "https://api.binance.com/api/v3/ticker/24hr"],
+    [TRADES_URL, "https://api.binance.com/api/v3/trades"],
   ])("binance urls, epxect(%s === %s", (url, expected) => {
     expect(url).toEqual(expected);
   });
@@ -39,7 +36,8 @@ describe("binance service", () => {
   });
 
   test("getTrades", async () => {
-    const result = await getTrades("BTCUSDT");
+    const signal = new AbortController().signal;
+    const result = await getTrades("BTCUSDT", signal);
     expect(isRight(result)).toBe(true);
   });
 });

@@ -1,10 +1,22 @@
 import * as t from "io-ts";
 
+export type Codec = t.TypeC<t.Props>;
+
 // response from GET /api/v3/exchangeInfo
+
+export const BinanceSymbol = t.type({
+  symbol: t.string,
+  status: t.string, // "TRADING", could be an enum,
+  baseAsset: t.string,
+  quoteAsset: t.string,
+});
+
+export type BinanceSymbol = t.TypeOf<typeof BinanceSymbol>;
+
 export const ExchangeInfo = t.type({
   timezone: t.string,
   serverTime: t.number,
-  symbols: t.array(t.type({ symbol: t.string })),
+  symbols: t.array(BinanceSymbol),
 });
 
 export type ExchangeInfo = t.TypeOf<typeof ExchangeInfo>;
@@ -27,6 +39,8 @@ export const Ticker = t.type({
   lastId: t.number,
   count: t.number, // Number of trades in the interval
 });
+
+// const d = Object.keys(Ticker._A);
 
 export type Ticker = t.TypeOf<typeof Ticker>;
 
@@ -68,7 +82,7 @@ export const Trade = t.type({
   isBestMatch: t.boolean,
 });
 
-export type Trade = t.Type<typeof Trade>;
+export type Trade = t.TypeOf<typeof Trade>;
 
 export const Trades = t.array(Trade);
 export type Trades = t.TypeOf<typeof Trades>;
