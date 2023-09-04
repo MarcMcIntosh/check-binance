@@ -29,7 +29,7 @@ export function MySelect<T extends object>({
     <Select {...props}>
       <Label>{label}</Label>
       <Button>
-        <SelectValue>{props.selectedKey ?? props.placeholder}</SelectValue>
+        <SelectValue />
         <span aria-hidden="true">▼</span>
       </Button>
       {description && <Text slot="description">{description}</Text>}

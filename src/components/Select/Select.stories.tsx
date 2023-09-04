@@ -8,7 +8,6 @@ const options = "abcdefghijklmnopqrstuvwxyz"
 
 const Component = () => (
   <MySelect
-    onSelectionChange={() => void 0}
     label="select thing"
     name="select"
     placeholder="any letter"
