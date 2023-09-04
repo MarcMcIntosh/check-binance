@@ -1,20 +1,20 @@
 import { useState } from "react";
-import { QueryClient, QueryClientProvider } from "react-query";
+import { Providers } from "./providers";
 
 import { ExchangeForm } from "./features/ExchangeForm";
-
-const queryClient = new QueryClient();
+import { TradeTable } from "./components/TradeTable/Table";
 
 function App() {
   const [selectedSymbol, setSelectedSymbol] = useState<string>("");
   return (
-    <QueryClientProvider client={queryClient}>
+    <Providers>
       <main>
         Hello!
         <ExchangeForm onSubmit={setSelectedSymbol} />
         <div>Symbol: {selectedSymbol}</div>
+        {selectedSymbol && <TradeTable symbol={selectedSymbol} />}
       </main>
-    </QueryClientProvider>
+    </Providers>
   );
 }
 
