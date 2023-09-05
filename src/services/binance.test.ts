@@ -10,6 +10,10 @@ import {
   getTrades,
 } from "./binance";
 
+const testOptions = {
+  retry: 1,
+  timeout: 20 * 1000,
+};
 describe("binance service", () => {
   test.each([
     [EXCHANGE_INFO_URL, "https://api.binance.com/api/v3/exchangeInfo"],
@@ -20,20 +24,32 @@ describe("binance service", () => {
     expect(url).toEqual(expected);
   });
 
-  test("getExchangeInfo", async () => {
-    const result = await getExchangeInfo();
-    expect(isRight(result)).toBe(true);
-  });
+  test(
+    "getExchangeInfo",
+    async () => {
+      const result = await getExchangeInfo();
+      expect(isRight(result)).toBe(true);
+    },
+    testOptions,
+  );
 
-  test("getTicker", async () => {
-    const result = await getTicker("BTCUSDT");
-    expect(isRight(result)).toBe(true);
-  });
+  test(
+    "getTicker",
+    async () => {
+      const result = await getTicker("BTCUSDT");
+      expect(isRight(result)).toBe(true);
+    },
+    testOptions,
+  );
 
-  test("getTicker24hr", async () => {
-    const result = await getTicker24hr("BTCUSDT");
-    expect(isRight(result)).toBe(true);
-  });
+  test(
+    "getTicker24hr",
+    async () => {
+      const result = await getTicker24hr("BTCUSDT");
+      expect(isRight(result)).toBe(true);
+    },
+    testOptions,
+  );
 
   test(
     "getTrades",
@@ -42,6 +58,6 @@ describe("binance service", () => {
       const result = await getTrades("BTCUSDT", signal);
       expect(isRight(result)).toBe(true);
     },
-    { timeout: 20 * 1000 },
+    testOptions,
   );
 });
