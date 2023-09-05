@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
-import { TradeTable } from "./Table";
+import { TradeTable } from "./TradeTable";
 
 const meta: Meta<typeof TradeTable> = {
   title: "Trade Table",

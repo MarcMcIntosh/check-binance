@@ -1,14 +1,13 @@
 import { FC } from "react";
+import { SortDescriptor } from "react-aria-components";
 import {
   Cell,
   Column,
-  ColumnProps,
   Row,
-  SortDescriptor,
   Table,
   TableBody,
   TableHeader,
-} from "react-aria-components";
+} from "../../components/Table";
 import { useTradeTableDataForSymbol } from "../../hooks/useTradeTableDataForSymbol";
 
 import type { Trade } from "../../models/binance";
@@ -28,13 +27,13 @@ export const TradeTable: FC<{ symbol: string }> = ({ symbol }) => {
     >
       <TableHeader columns={columns}>
         {(column) => (
-          <MyColumn
+          <Column
             allowsSorting
             sortDescriptor={list.sortDescriptor}
             isRowHeader={column.isRowHeader}
           >
             {column.name}
-          </MyColumn>
+          </Column>
         )}
       </TableHeader>
       <TableBody items={list.items}>
@@ -45,24 +44,5 @@ export const TradeTable: FC<{ symbol: string }> = ({ symbol }) => {
         )}
       </TableBody>
     </Table>
-  );
-};
-
-const MyColumn: FC<ColumnProps & { sortDescriptor?: SortDescriptor }> = (
-  props,
-) => {
-  return (
-    <Column {...props}>
-      {({ allowsSorting, sortDirection }) => (
-        <>
-          {props.children}
-          {allowsSorting && props.sortDescriptor?.column == props.id && (
-            <span aria-hidden="true">
-              {sortDirection === "ascending" ? "▲" : "▼"}
-            </span>
-          )}
-        </>
-      )}
-    </Column>
   );
 };

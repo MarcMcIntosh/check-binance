@@ -1,4 +1,5 @@
 import { FC, ReactNode } from "react";
+import { Text } from "react-aria-components";
 import {
   Cell,
   Row,
@@ -6,15 +7,14 @@ import {
   Table,
   TableBody,
   TableHeader,
-  Text,
-} from "react-aria-components";
+} from "../../components/Table";
 import { camelToFlat } from "../../utils/normalizeString";
 
 export const TickerTable: FC<{
   header: ReactNode;
   data: { key: string; value: string | number }[];
 }> = ({ header, data }) => {
-  const collumns = [{ key: "name" }, { key: "value" }];
+  const columns = [{ key: "name" }, { key: "value" }];
   const rows = data.map(({ key, value }) => ({
     id: key,
     name: camelToFlat(key),
@@ -24,12 +24,12 @@ export const TickerTable: FC<{
     <div>
       <Text>{header}</Text>
       <Table>
-        <TableHeader columns={collumns}>
+        <TableHeader columns={columns}>
           {(column) => <Column {...column} isRowHeader />}
         </TableHeader>
         <TableBody items={rows}>
           {(row) => (
-            <Row columns={collumns}>
+            <Row columns={columns}>
               {(column) => <Cell>{[row[column.key as keyof typeof row]]}</Cell>}
             </Row>
           )}

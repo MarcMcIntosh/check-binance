@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
-import { TickerTable } from "./Table";
+import { TickerTable } from "./TckerTable";
 import { tickerStub } from "../../__stubs__";
 
 const meta: Meta<typeof TickerTable> = {
