@@ -1,1 +1,1 @@
-export { TickerTable } from "./TckerTable";
+export { TickerTable } from "./TickerTable";
