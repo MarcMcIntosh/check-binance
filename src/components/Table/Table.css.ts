@@ -1,4 +1,5 @@
-import { style } from "@vanilla-extract/css";
+import { style, globalStyle } from "@vanilla-extract/css";
+import { color, colors } from "../../styles/index.css";
 
 // use create theme to make the vars.
 
@@ -10,9 +11,9 @@ export const table = style({
   // "--text-color": "var(--alias-text-color)",
   // "--text-color-disabled": "var(--alias-text-color-disabled)",
   padding: "0.286rem",
-  border: "1px solid var(--border-color)",
+  border: `1px solid ${colors.border}`,
   borderRadius: "6px",
-  background: "var(--background-color)",
+  background: colors.background,
   outline: "none",
   borderSpacing: "0",
   minHeight: "100px",
@@ -21,8 +22,8 @@ export const table = style({
   wordBreak: "break-word",
   selectors: {
     "&[data-focus-visible]": {
-      borderColor: "var(--highlight-background)",
-      boxShadow: "0 0 0 1px var(--highlight-background)",
+      borderColor: colors.backGroundHighlight,
+      boxShadow: `0 0 0 1px ${color.highlightBackground}`,
     },
   },
 });
@@ -33,7 +34,7 @@ const columnAndCell = style({
   outline: "none",
   selectors: {
     "&[data-focus-visible]": {
-      outline: "2px solid var(--highlight-background)",
+      outline: `2px solid ${color.highlightBackground}`,
       outlineOffset: "-2px",
     },
   },
@@ -63,46 +64,52 @@ export const cell = style([
 ]);
 
 export const tableHeader = style({
+  color: colors.text,
   selectors: {
-    "&:after": { content: '""', display: "table-row", height: "2px" },
+    "&:after": { content: '" "', display: "table-row", height: "2px" },
   },
+});
+
+globalStyle(`${tableHeader} tr:last-child ${column}`, {
+  borderBottom: `1px solid ${colors.border}`,
+  cursor: "default",
 });
 
 export const row = style({
   borderRadius: "6px",
   outline: "none",
   cursor: "default",
-  color: "var(--text-color)",
+  color: colors.text,
   fontSize: "1.072rem",
   position: "relative",
   transform: "scale(1)",
   selectors: {
     [`${tableHeader} &:last-child`]: {
       [column]: {
-        borderBottom: "1px solid var(--border-color)",
+        borderBottom: `1px solid ${colors.border}`,
         cursor: "default",
       },
     },
     "&[data-focus-visible]": {
-      outline: "2px solid var(--highlight-background)",
+      outline: `2px solid ${color.highlightBackground}`,
       outlineOffset: "-2px",
       [`${cell}[data-focus-visible]`]: {
-        outlineColor: "var(--highlight-foreground)",
+        outlineColor: color.highlightForeground,
         outlineOffset: "-4px",
       },
     },
     [`&[data-pressed] `]: {
       [cell]: {
-        background: "var(--spectrum-global-color-gray-200)",
+        background: color.grey200,
       },
     },
     '&[aria-selected="true"]': {
       [cell]: {
-        background: "var(--highlight-background)",
-        color: "var(--highlight-foreground)",
+        background: color.highlightBackground,
+        color: color.highlightForeground,
       },
     },
-    "&[aria-disabled]": { color: "var(--text-color-disabled)" },
+    "&[aria-disabled]": { color: colors.textDisabled },
   },
 });
 

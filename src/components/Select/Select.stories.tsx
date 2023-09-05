@@ -1,20 +1,20 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
-import { MySelect, MyItem } from "./Select";
+import { Select, Item } from "./index";
 
 const options = "abcdefghijklmnopqrstuvwxyz"
   .split("")
   .map((str) => ({ id: str, name: str }));
 
 const Component = () => (
-  <MySelect
+  <Select
     label="select thing"
     name="select"
     placeholder="any letter"
     items={options}
   >
-    {(item) => <MyItem>{item.name}</MyItem>}
-  </MySelect>
+    {(item) => <Item>{item.name}</Item>}
+  </Select>
 );
 
 const meta: Meta<typeof Component> = {

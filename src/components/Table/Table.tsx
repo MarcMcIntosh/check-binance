@@ -48,12 +48,13 @@ export function MyTableHeader<T extends object>({
 }
 export type MyColumnProps = ColumnProps & { sortDescriptor?: SortDescriptor };
 export const MyColumn: FC<MyColumnProps> = ({ className, ...props }) => {
+  const isSorted = props.sortDescriptor?.column === props.id;
   return (
     <Column {...props} className={className ?? styles.column}>
       {({ allowsSorting, sortDirection }) => (
         <>
           {props.children}
-          {allowsSorting && props.sortDescriptor?.column == props.id && (
+          {allowsSorting && isSorted && (
             <span aria-hidden="true">
               {sortDirection === "ascending" ? "▲" : "▼"}
             </span>

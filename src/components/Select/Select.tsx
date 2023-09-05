@@ -1,4 +1,4 @@
-import type { ItemProps, SelectProps } from "react-aria-components";
+import type { SelectProps } from "react-aria-components";
 import { Text } from "react-aria-components";
 import {
   Select,
@@ -6,9 +6,11 @@ import {
   Button,
   SelectValue,
   Popover,
-  ListBox,
-  Item,
 } from "react-aria-components";
+
+import { ListBox, Item, ItemProps } from "../ListBox";
+
+import * as styles from "./Select.css";
 
 interface MySelectProps<T extends object>
   extends Omit<SelectProps<T>, "children"> {
@@ -26,15 +28,19 @@ export function MySelect<T extends object>({
   ...props
 }: MySelectProps<T>) {
   return (
-    <Select {...props}>
+    <Select {...props} className={props.className ?? styles.select}>
       <Label>{label}</Label>
-      <Button>
-        <SelectValue>{props.selectedKey}</SelectValue>
+      <Button className={props.className ? undefined : styles.button}>
+        <SelectValue
+          className={props.className ? undefined : styles.selectValue}
+        >
+          {props.selectedKey}
+        </SelectValue>
         <span aria-hidden="true">▼</span>
       </Button>
       {description && <Text slot="description">{description}</Text>}
       {errorMessage && <Text slot="errorMessage">{errorMessage}</Text>}
-      <Popover>
+      <Popover className={props.className ? undefined : styles.popover}>
         <ListBox>{children}</ListBox>
       </Popover>
     </Select>
@@ -42,12 +48,5 @@ export function MySelect<T extends object>({
 }
 
 export function MyItem(props: ItemProps) {
-  return (
-    <Item
-      {...props}
-      className={({ isFocused, isSelected }) =>
-        `my-item ${isFocused ? "focused" : ""} ${isSelected ? "selected" : ""}`
-      }
-    />
-  );
+  return <Item {...props} />;
 }

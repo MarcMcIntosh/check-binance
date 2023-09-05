@@ -1,5 +1,4 @@
-import { FC, ReactNode } from "react";
-import { Text } from "react-aria-components";
+import { FC } from "react";
 import {
   Cell,
   Row,
@@ -11,7 +10,7 @@ import {
 import { camelToFlat } from "../../utils/normalizeString";
 
 export const TickerTable: FC<{
-  header: ReactNode;
+  header: string;
   data: { key: string; value: string | number }[];
 }> = ({ header, data }) => {
   const columns = [{ key: "name" }, { key: "value" }];
@@ -21,20 +20,19 @@ export const TickerTable: FC<{
     value,
   }));
   return (
-    <div>
-      <Text>{header}</Text>
-      <Table>
-        <TableHeader columns={columns}>
-          {(column) => <Column {...column} isRowHeader />}
-        </TableHeader>
-        <TableBody items={rows}>
-          {(row) => (
-            <Row columns={columns}>
-              {(column) => <Cell>{[row[column.key as keyof typeof row]]}</Cell>}
-            </Row>
-          )}
-        </TableBody>
-      </Table>
-    </div>
+    <Table aria-label={header}>
+      <TableHeader columns={columns}>
+        <Column isRowHeader>{header}</Column>
+        <Column />
+        {/* {(column) => <Column {...column} isRowHeader />} */}
+      </TableHeader>
+      <TableBody items={rows}>
+        {(row) => (
+          <Row columns={columns}>
+            {(column) => <Cell>{[row[column.key as keyof typeof row]]}</Cell>}
+          </Row>
+        )}
+      </TableBody>
+    </Table>
   );
 };
