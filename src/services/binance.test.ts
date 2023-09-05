@@ -35,9 +35,13 @@ describe("binance service", () => {
     expect(isRight(result)).toBe(true);
   });
 
-  test("getTrades", async () => {
-    const signal = new AbortController().signal;
-    const result = await getTrades("BTCUSDT", signal);
-    expect(isRight(result)).toBe(true);
-  });
+  test(
+    "getTrades",
+    async () => {
+      const signal = new AbortController().signal;
+      const result = await getTrades("BTCUSDT", signal);
+      expect(isRight(result)).toBe(true);
+    },
+    { timeout: 20 * 1000 },
+  );
 });
