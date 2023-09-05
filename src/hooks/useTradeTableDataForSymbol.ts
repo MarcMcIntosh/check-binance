@@ -2,11 +2,12 @@ import { useAsyncList } from "@react-stately/data";
 import { isLeft } from "fp-ts/lib/Either";
 import { getTrades } from "../services/binance";
 import { Trade } from "../models/binance";
+import { camelToFlat } from "../utils/normalizeString";
 
 export function useTradeTableDataForSymbol(symbol: string) {
   const columns = Object.keys(Trade.props).map((key) => ({
     key,
-    name: key,
+    name: camelToFlat(key),
     isRowHeader: true,
   }));
 
@@ -15,6 +16,7 @@ export function useTradeTableDataForSymbol(symbol: string) {
       const res = await getTrades(symbol, signal);
 
       if (isLeft(res)) {
+        // eslint-disable-next-line no-console
         console.log(res.left);
         throw new Error(`Invalid data format`);
       }
@@ -33,7 +35,7 @@ export function useTradeTableDataForSymbol(symbol: string) {
 
           const first = a[key as keyof Trade];
           const second = b[key as keyof Trade];
-          const compare = first < second ? 1 : -1;
+          const compare = first < second ? -1 : 1;
 
           return isDescending ? compare * -1 : compare;
         }),

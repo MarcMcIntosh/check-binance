@@ -108,6 +108,7 @@ export const ExchangeForm: FC<{ onSubmit: (symbol: string) => void }> = ({
   const exchangeInfo = useExchangeInfo();
 
   if (!exchangeInfo.data && exchangeInfo.error) {
+    // eslint-disable-next-line no-console
     console.error(exchangeInfo.error);
     return <div>Error fetching exchange info</div>;
   }

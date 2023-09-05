@@ -40,9 +40,7 @@ export const TradeTable: FC<{ symbol: string }> = ({ symbol }) => {
       <TableBody items={list.items}>
         {(item) => (
           <Row columns={columns}>
-            {(column) => (
-              <Cell>{item[column.key as keyof (typeof Trade)["_A"]] + ""}</Cell>
-            )}
+            {(column) => <Cell>{item[column.key as keyof Trade] + ""}</Cell>}
           </Row>
         )}
       </TableBody>

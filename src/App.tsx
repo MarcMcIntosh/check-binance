@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Providers } from "./providers";
 
 import { ExchangeForm } from "./features/ExchangeForm";
-import { TradeTable } from "./components/TradeTable/Table";
+import { TradeTable } from "./components/TradeTable";
 
 function App() {
   const [selectedSymbol, setSelectedSymbol] = useState<string>("");

@@ -38,7 +38,6 @@ export function getTrades(
 ): Promise<Validation<Trades>> {
   const url = new URL(TRADES_URL);
   url.searchParams.append("symbol", symbol);
-  console.log("fetching data from: " + url.toString());
   return axios.get<Trades>(url.toString(), { signal }).then((res) => {
     return Trades.decode(res.data);
   });

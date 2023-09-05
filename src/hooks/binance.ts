@@ -2,11 +2,11 @@ import { useQuery } from "react-query";
 import { getExchangeInfo, getTicker, getTicker24hr } from "../services/binance";
 import { isLeft } from "fp-ts/lib/Either";
 
-// calls can throw https://tanstack.com/query/v3/docs/react/guides/query-functions
 export function useExchangeInfo() {
   return useQuery("exchangeInfo", async () => {
     const result = await getExchangeInfo();
     if (isLeft(result)) {
+      // eslint-disable-next-line no-console
       console.log(result.left);
       throw new Error("Exchange data validation error");
     } else {
