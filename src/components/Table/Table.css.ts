@@ -5,10 +5,10 @@ import { style } from "@vanilla-extract/css";
 export const table = style({
   // "--highlight-background": "slateblue",
   // "--highlight-foreground": "white",
-  // "--border-color": "var(--spectrum-global-color-gray-400)",
+  // "--border-color": "var(--color-gray-400)",
   // "--background-color": "var(--page-background)",
-  // "--text-color": "var(--spectrum-alias-text-color)",
-  // "--text-color-disabled": "var(--spectrum-alias-text-color-disabled)",
+  // "--text-color": "var(--alias-text-color)",
+  // "--text-color-disabled": "var(--alias-text-color-disabled)",
   padding: "0.286rem",
   border: "1px solid var(--border-color)",
   borderRadius: "6px",
@@ -102,13 +102,6 @@ export const row = style({
         color: "var(--highlight-foreground)",
       },
     },
-
-    //   ".react-aria-Button": {
-    //     color: "var(--highlight-foreground)",
-    //     "--focus-ring-color": "var(--highlight-foreground)",
-    //     "--hover-highlight": "rgb(255 255 255 / 0.1)",
-    //     "--active-highlight": "rgb(255 255 255 / 0.2)",
-    //   },
     "&[aria-disabled]": { color: "var(--text-color-disabled)" },
   },
 });
