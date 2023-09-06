@@ -33,7 +33,7 @@ describe("Select", () => {
       await user.click(c);
     }
 
-    expect(screen.getByRole("button").textContent).toContain("C");
+    expect(screen.getAllByRole("button")[0].textContent).toContain("C");
     expect(onSelectionChange).toHaveBeenCalled();
     expect(onSelectionChange).toHaveBeenLastCalledWith("c");
   });
