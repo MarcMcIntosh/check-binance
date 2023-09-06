@@ -63,7 +63,7 @@ export const selectValue = style({
       color: color.grey700,
     },
     [`${button}  &[data-placeholder]`]: {
-      color: colors.textDisabled,
+      color: colors.text,
     },
   },
 });

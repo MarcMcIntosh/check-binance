@@ -1,15 +1,7 @@
 import { style, globalStyle } from "@vanilla-extract/css";
 import { color, colors } from "../../styles/index.css";
 
-// use create theme to make the vars.
-
 export const table = style({
-  // "--highlight-background": "slateblue",
-  // "--highlight-foreground": "white",
-  // "--border-color": "var(--color-gray-400)",
-  // "--background-color": "var(--page-background)",
-  // "--text-color": "var(--alias-text-color)",
-  // "--text-color-disabled": "var(--alias-text-color-disabled)",
   padding: "0.286rem",
   border: `1px solid ${colors.border}`,
   borderRadius: "6px",

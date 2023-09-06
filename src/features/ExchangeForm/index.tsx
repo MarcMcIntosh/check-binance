@@ -5,6 +5,7 @@ import { Select, Item } from "../../components/Select";
 import { useState } from "react";
 import { Button } from "../../components/Button";
 import { BinanceSymbol, ExchangeInfo } from "../../models/binance";
+import { Box } from "../../components/Box";
 
 function unique(arr: string[]) {
   return arr.reduce<string[]>((acc, cur) => {
@@ -77,27 +78,38 @@ const SelectPairsFrom: FC<{
           onSubmit(selectedBaseAsset + selectedQuoteAsset);
       }}
     >
-      <Select
-        onSelectionChange={handleSelectChange(setSelectedBaseAsset)}
-        selectedKey={selectedBaseAsset}
-        items={baseOptions}
-        label="base asset"
-        placeholder="Select a base"
-      >
-        {(item) => <Item>{item.name}</Item>}
-      </Select>
+      <Box>
+        <Select
+          onSelectionChange={handleSelectChange(setSelectedBaseAsset)}
+          selectedKey={selectedBaseAsset}
+          items={baseOptions}
+          label="base asset"
+          placeholder="Select a base"
+        >
+          {(item) => <Item>{item.name}</Item>}
+        </Select>
 
-      <Select
-        onSelectionChange={handleSelectChange(setSelectedQuoteAsset)}
-        selectedKey={selectedQuoteAsset}
-        items={quoteOptions}
-        label="quote asset"
-        placeholder="Select a quote"
-      >
-        {(item) => <Item>{item.name}</Item>}
-      </Select>
-
-      <Button type="submit">Submit</Button>
+        <Select
+          onSelectionChange={handleSelectChange(setSelectedQuoteAsset)}
+          selectedKey={selectedQuoteAsset}
+          items={quoteOptions}
+          label="quote asset"
+          placeholder="Select a quote"
+        >
+          {(item) => <Item>{item.name}</Item>}
+        </Select>
+      </Box>
+      <Box>
+        <Button
+          type="submit"
+          isDisabled={!selectedBaseAsset || !selectedQuoteAsset}
+        >
+          Submit
+        </Button>
+        {selectedBaseAsset && selectedQuoteAsset && (
+          <div>Symbol: {selectedBaseAsset + selectedQuoteAsset}</div>
+        )}
+      </Box>
     </form>
   );
 };

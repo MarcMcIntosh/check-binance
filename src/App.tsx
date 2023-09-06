@@ -2,17 +2,15 @@ import { useState } from "react";
 import { Providers } from "./providers";
 
 import { ExchangeForm } from "./features/ExchangeForm";
-import { TradeTable } from "./features/TradeTable";
+import { TabTables } from "./features/TabTables";
 
 function App() {
   const [selectedSymbol, setSelectedSymbol] = useState<string>("");
   return (
     <Providers>
       <main>
-        Hello!
         <ExchangeForm onSubmit={setSelectedSymbol} />
-        <div>Symbol: {selectedSymbol}</div>
-        {selectedSymbol && <TradeTable symbol={selectedSymbol} />}
+        {selectedSymbol && <TabTables selectedSymbol={selectedSymbol} />}
       </main>
     </Providers>
   );

@@ -31,13 +31,6 @@ export const item = style({
       fontWeight: 600,
     },
 
-    // '&[aria-selected="true"]::before': {
-    //   content: ['"✓"', '"✓" / ""'],
-    //   alt: '" "',
-    //   position: "absolute",
-    //   top: "4px",
-    //   left: "4px",
-    // },
     "&[data-focused], &[data-pressed]": {
       background: color.highlightBackground,
       color: color.highlightForeground,

@@ -19,6 +19,10 @@ export const TradeTable: FC<{ symbol: string }> = ({ symbol }) => {
     list.sort(sortDescriptor);
   };
 
+  if (list.error) {
+    return <div>Error: {list.error.message}</div>;
+  }
+
   return (
     <Table
       aria-label={`${symbol} trade table`}
