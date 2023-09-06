@@ -14,6 +14,11 @@ const testOptions = {
   retry: 1,
   timeout: 20 * 1000,
 };
+
+// seems binance stops requires from CI platforms with a 451 status code :/
+
+const IS_CI = process.env.CI ? true : false;
+
 describe("binance service", () => {
   test.each([
     [EXCHANGE_INFO_URL, "https://api.binance.com/api/v3/exchangeInfo"],
@@ -24,7 +29,7 @@ describe("binance service", () => {
     expect(url).toEqual(expected);
   });
 
-  test(
+  test.skipIf(IS_CI)(
     "getExchangeInfo",
     async () => {
       const result = await getExchangeInfo();
@@ -33,7 +38,7 @@ describe("binance service", () => {
     testOptions,
   );
 
-  test(
+  test.skipIf(IS_CI)(
     "getTicker",
     async () => {
       const result = await getTicker("BTCUSDT");
@@ -42,7 +47,7 @@ describe("binance service", () => {
     testOptions,
   );
 
-  test(
+  test.skipIf(IS_CI)(
     "getTicker24hr",
     async () => {
       const result = await getTicker24hr("BTCUSDT");
@@ -51,7 +56,7 @@ describe("binance service", () => {
     testOptions,
   );
 
-  test(
+  test.skipIf(IS_CI)(
     "getTrades",
     async () => {
       const signal = new AbortController().signal;
