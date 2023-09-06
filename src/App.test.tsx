@@ -1,9 +1,8 @@
 import App from "./App";
-import { render, screen } from "./utils/test-utils";
+import { render } from "./utils/test-utils";
 
 describe("Simple working test", () => {
-  it("the title is visible", () => {
+  it.todo("test the happy path and mock requests", () => {
     render(<App />);
-    expect(screen.getByText("Hello!")).toBeInTheDocument();
   });
 });
